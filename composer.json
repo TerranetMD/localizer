@@ -1,6 +1,15 @@
 {
     "name": "adminarchitect/localizer",
     "description": "Localization package",
+    "keywords": [
+        "laravel",
+        "laravel multilanguage",
+        "laravel localization",
+        "laravel admin"
+        "laravel backend panel",
+        "admin architect",
+        "laravel administration framework"
+    ],
     "authors": [
         {
             "name": "endi",
