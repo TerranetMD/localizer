@@ -1,0 +1,21 @@
+{
+    "name": "terranet/localizer",
+    "description": "Localization package",
+    "authors": [
+        {
+            "name": "endi",
+            "email": "endi1982@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/html": "~5.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Terranet\\Localizer": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}

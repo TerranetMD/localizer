@@ -1,0 +1,69 @@
+<?php
+
+namespace Terranet\Localizer;
+
+use Illuminate\Support\Manager;
+use Terranet\Localizer\Resolvers\BrowserResolver;
+use Terranet\Localizer\Resolvers\DomainResolver;
+use Terranet\Localizer\Resolvers\EnvironmentResolver;
+use Terranet\Localizer\Resolvers\RequestResolver;
+
+class Resolver extends Manager
+{
+    protected $drivers = [
+        'request',
+        'domain',
+        'environment'
+    ];
+
+    public function createRequestDriver()
+    {
+        return new RequestResolver($this->app['request']);
+    }
+
+    /**
+     * @return DomainResolver
+     */
+    public function createDomainDriver()
+    {
+        return new DomainResolver($this->app['request']);
+    }
+
+    /**
+     * @return EnvironmentResolver
+     */
+    public function createEnvironmentDriver()
+    {
+        return new EnvironmentResolver();
+    }
+
+    /**
+     * Resolve locale
+     *
+     * @return mixed
+     */
+    public function resolve()
+    {
+        if ($this->getDefaultDriver()) {
+            return $this->resolve();
+        }
+
+        foreach ($this->getDrivers() as $driver) {
+            if ($locale = $this->driver($driver)->resolve()) {
+                return $locale;
+            }
+        }
+
+        return config('app.fallback_locale');
+    }
+
+    /**
+     * Get the default driver name.
+     *
+     * @return string
+     */
+    public function getDefaultDriver()
+    {
+        return config('localizer.resolver');
+    }
+}
