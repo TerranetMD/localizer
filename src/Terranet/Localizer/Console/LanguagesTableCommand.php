@@ -3,7 +3,7 @@
 namespace Terranet\Localizer\Console;
 
 use Illuminate\Console\Command;
-use Illuminate\Foundation\Composer;
+use Illuminate\Support\Composer;
 use Illuminate\Filesystem\Filesystem;
 
 class LanguagesTableCommand extends Command
