@@ -57,7 +57,7 @@ class RequestResolver implements Resolver
             } else {
                 $accepted = preg_split('/,\s*/', $httpLanguages);
 
-                static::$languages =  empty($languages = $this->buildCollection($accepted, $languages = []))
+                static::$languages = empty($languages = $this->buildCollection($accepted, $languages = []))
                     ? null
                     : array_keys($languages)[0];
             }
@@ -84,7 +84,7 @@ class RequestResolver implements Resolver
                 continue;
             }
             if (isset($match[2]) === true) {
-                $quality = (float)$match[2];
+                $quality = (float) $match[2];
             } else {
                 $quality = 1.0;
             }
@@ -107,5 +107,17 @@ class RequestResolver implements Resolver
         }
 
         return $languages;
+    }
+
+    /**
+     * Re-Assemble current url with different locale.
+     *
+     * @param $iso
+     * @param null $url
+     * @return mixed
+     */
+    public function assemble($iso, $url = null)
+    {
+        return url($iso . '/' . ltrim($url, '/'));
     }
 }

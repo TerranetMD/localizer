@@ -4,6 +4,7 @@ namespace Terranet\Localizer\Resolvers;
 
 use Terranet\Localizer\Contracts\Resolver;
 use Terranet\Localizer\Data;
+use Terranet\Localizer\Locale;
 
 class EnvironmentResolver implements Resolver
 {
@@ -53,5 +54,17 @@ class EnvironmentResolver implements Resolver
         static::$environment = $languageArray;
 
         return ! empty($languageArray) ? array_keys($languageArray)[0] : null;
+    }
+
+    /**
+     * Re-Assemble current url with different locale.
+     *
+     * @param mixed string|Locale $iso
+     * @param null $url
+     * @return mixed
+     */
+    public function assemble($iso, $url = null)
+    {
+        return url($url);
     }
 }
