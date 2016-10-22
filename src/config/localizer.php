@@ -12,7 +12,7 @@ return [
     | Available providers: request, domain, environment
     |
     */
-    'resolver' => null,
+    'resolver' => 'request',
 
     /*
     |--------------------------------------------------------------------------
