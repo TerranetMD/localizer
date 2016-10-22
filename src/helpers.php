@@ -5,6 +5,7 @@ namespace localizer {
     use Closure;
     use InvalidArgumentException;
     use Route;
+    use Terranet\Localizer\Locale;
 
     /**
      * Fetch locale if specified or return all available locales
@@ -55,7 +56,32 @@ namespace localizer {
                 $attributes,
                 ['prefix' => $locale->iso6391()]
             );
+
             Route::group($attributes, $callback);
         }
+    }
+
+    /**
+     * Rebuild url to a new locale.
+     *
+     * @param $iso
+     * @param null $url
+     * @return mixed
+     */
+    function url($iso, $url = null)
+    {
+        if (is_null($url)) {
+            $url = request()->getRequestUri();
+        }
+
+        if ($prefix = Route::current()->getPrefix()) {
+            $url = substr($url, strlen($prefix));
+        }
+
+        if ($iso instanceof Locale) {
+            $iso = $iso->iso6391();
+        }
+
+        return app('terranet.localizer')->getResolver()->assemble($iso, $url);
     }
 }
