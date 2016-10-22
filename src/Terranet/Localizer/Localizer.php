@@ -44,7 +44,9 @@ class Localizer
                 ! ($locale = $this->provider->find($resolved))
             ) {
                 $resolved = config('app.fallback_locale');
-                $locale = $this->provider->find($resolved);
+                if (! $locale = $this->provider->find($resolved)) {
+                    $locale = $this->getDefault();
+                }
             }
 
             static::$locale = $locale;
@@ -71,5 +73,10 @@ class Localizer
     public function getDefault()
     {
         return $this->provider->getDefault();
+    }
+
+    public function getResolver()
+    {
+        return $this->resolver;
     }
 }
