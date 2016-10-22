@@ -3,17 +3,16 @@
 namespace Terranet\Localizer;
 
 use Illuminate\Support\Manager;
-use Terranet\Localizer\Resolvers\BrowserResolver;
 use Terranet\Localizer\Resolvers\DomainResolver;
 use Terranet\Localizer\Resolvers\EnvironmentResolver;
 use Terranet\Localizer\Resolvers\RequestResolver;
 
 class Resolver extends Manager
 {
-    protected $drivers = [
+    protected $resolvers = [
         'request',
         'domain',
-        'environment'
+        'environment',
     ];
 
     public function createRequestDriver()
@@ -44,12 +43,12 @@ class Resolver extends Manager
      */
     public function resolve()
     {
-        if ($this->getDefaultDriver()) {
-            return $this->resolve();
+        if ($driver = $this->getDefaultDriver()) {
+            return $this->driver($driver)->resolve();
         }
 
-        foreach ($this->getDrivers() as $driver) {
-            if ($locale = $this->driver($driver)->resolve()) {
+        foreach ($this->resolvers as $resolver) {
+            if ($locale = $this->driver($resolver)->resolve()) {
                 return $locale;
             }
         }
