@@ -2,6 +2,8 @@
 
 namespace Terranet\Localizer;
 
+use Carbon\Carbon;
+
 class Localizer
 {
     /**
@@ -53,6 +55,19 @@ class Localizer
         }
 
         return static::$locale;
+    }
+
+    public function setLocale(Locale $locale)
+    {
+        static::$locale = $locale;
+
+        app()->setLocale($locale->iso6391());
+
+        setlocale(LC_ALL, $locale->locale());
+
+        Carbon::setLocale($locale->iso6391());
+
+        return $this;
     }
 
     /**

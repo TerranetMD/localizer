@@ -31,11 +31,7 @@ class ServiceProvider extends BaseServiceProvider
             ));
 
             if ($locale = $localizer->find()) {
-                setlocale(LC_ALL, $locale->locale());
-
-                $app->setLocale($locale->iso6391());
-
-                Carbon::setLocale($locale->iso6391());
+                $localizer->setLocale($locale);
             }
 
             return $localizer;
