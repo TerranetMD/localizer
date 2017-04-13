@@ -35,6 +35,16 @@ class Locale
     {
         return (string) $this->data['iso6391'];
     }
+    
+    /**
+     * Alias for iso6391() method.
+     *
+     * @return string
+     */
+    public function iso()
+    {
+        return $this->iso6391();
+    }
 
     /**
      * Language locale
