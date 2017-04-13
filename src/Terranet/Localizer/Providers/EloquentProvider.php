@@ -29,7 +29,7 @@ class EloquentProvider implements Provider
         return $this->createModel()
                     ->where('active', '=', 1)
                     ->orderBy('is_default', 'desc')
-                    ->orderBy('iso6391', 'asc')
+                    ->orderBy('id', 'asc')
                     ->get(['id', 'iso6391', 'locale', 'title', 'is_default'])
                     ->toArray();
     }
