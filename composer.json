@@ -16,9 +16,6 @@
             "email": "endi1982@gmail.com"
         }
     ],
-    "require": {
-        "laravelcollective/html": "^5.1|^5.2"
-    },
     "autoload": {
         "psr-0": {
             "Terranet\\Localizer": "src/"
