@@ -53,7 +53,7 @@ class LanguagesTableCommand extends Command
      *
      * @return void
      */
-    public function fire()
+    public function handle()
     {
         $fullPath = $this->createBaseMigration();
 
