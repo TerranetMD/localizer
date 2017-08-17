@@ -30,7 +30,7 @@ class LanguagesTableCommand extends Command
     protected $files;
 
     /**
-     * @var \Illuminate\Foundation\Composer
+     * @var \Illuminate\Support\Composer
      */
     protected $composer;
 
@@ -38,7 +38,7 @@ class LanguagesTableCommand extends Command
      * Create a new session table command instance.
      *
      * @param  \Illuminate\Filesystem\Filesystem $files
-     * @param  \Illuminate\Foundation\Composer   $composer
+     * @param  \Illuminate\Support\Composer   $composer
      */
     public function __construct(Filesystem $files, Composer $composer)
     {
