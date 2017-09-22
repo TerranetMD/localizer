@@ -118,6 +118,25 @@ class RequestResolver implements Resolver
      */
     public function assemble($iso, $url = null)
     {
-        return url($iso . '/' . ltrim($url, '/'));
+        $url = rtrim($url, '/');
+        $locales = locales()->map->iso6391()->all();
+        $default = getDefault()->iso6391();
+
+        foreach ($locales as $locale) {
+            # handle urls that contains language in request uri: /en | /en/profile
+            # skip urls that starts with string equals with one of locales: /english
+            if (starts_with($url, "/{$locale}/") || "/{$locale}" === $url) {
+                return url(preg_replace(
+                    '~^\/' . $locale . '~si',
+                    $iso === $default ? "" : "/{$iso}",
+                    $url
+                ));
+            }
+        }
+
+        # prepend url with $iso
+        return url(
+            ($iso === $default ? "" : $iso . '/') . ltrim($url, '/')
+        );
     }
 }
