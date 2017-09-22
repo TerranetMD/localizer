@@ -74,10 +74,6 @@ namespace localizer {
             $url = request()->getRequestUri();
         }
 
-        if ($prefix = Route::current()->getPrefix()) {
-            $url = substr($url, strlen($prefix));
-        }
-
         if ($iso instanceof Locale) {
             $iso = $iso->iso6391();
         }
