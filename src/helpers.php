@@ -14,7 +14,7 @@ namespace localizer {
      */
     function locales()
     {
-        return app('terranet.localizer')->fetchAll();
+        return collect(app('terranet.localizer')->fetchAll());
     }
 
     /**
