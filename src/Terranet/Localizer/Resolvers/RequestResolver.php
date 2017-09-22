@@ -4,6 +4,8 @@ namespace Terranet\Localizer\Resolvers;
 
 use Illuminate\Http\Request;
 use Terranet\Localizer\Contracts\Resolver;
+use function localizer\getDefault;
+use function localizer\locales;
 
 class RequestResolver implements Resolver
 {
