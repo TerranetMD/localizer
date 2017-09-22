@@ -69,10 +69,10 @@ class Locale
     /**
      * Implicit flag, use this if no language detected
      *
-     * @return int
+     * @return bool
      */
     public function isDefault()
     {
-        return (int) $this->data['is_default'];
+        return (bool) $this->data['is_default'];
     }
 }
