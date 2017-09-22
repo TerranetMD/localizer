@@ -51,7 +51,7 @@ namespace localizer {
         /**
          * register localized routes
          */
-        if ($locale = locale()) {
+        if (($locale = locale()) && !$locale->isDefault()) {
             $attributes = array_merge(
                 $attributes,
                 ['prefix' => $locale->iso6391()]
