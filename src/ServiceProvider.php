@@ -2,7 +2,6 @@
 
 namespace Terranet\Localizer;
 
-use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Terranet\Localizer\Console\LanguagesTableCommand;
 
@@ -11,11 +10,11 @@ class ServiceProvider extends BaseServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../../config' => config_path(),
-            __DIR__ . '/../../database/seeds' => base_path('database/seeds')
+            __DIR__ . '/config' => config_path(),
+            __DIR__ . '/database/seeds' => base_path('database/seeds')
         ]);
 
-        $this->mergeConfigFrom(__DIR__ . '/../../config/localizer.php', 'localizer');
+        $this->mergeConfigFrom(__DIR__ . '/config/localizer.php', 'localizer');
     }
 
     public function register()

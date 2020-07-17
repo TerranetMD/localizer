@@ -17,8 +17,8 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "Terranet\\Localizer": "src/"
+        "psr-4": {
+            "Terranet\\Localizer\\": "src/"
         },
         "files": [
             "src/helpers.php"

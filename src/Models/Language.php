@@ -8,6 +8,11 @@ class Language extends Model
 {
     protected $table = 'languages';
 
+    protected $casts = [
+        'active' => 'boolean',
+        'is_default' => 'boolean',
+    ];
+
     protected $fillable = [
         'iso6391', 'locale', 'title', 'active', 'is_default'
     ];
