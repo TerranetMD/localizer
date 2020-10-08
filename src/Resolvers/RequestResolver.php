@@ -39,7 +39,7 @@ class RequestResolver implements Resolver
         $segment = $this->request->segment(config('localizer.request.segment', 1));
         $headerSegments = collect(config('localizer.request.header_segments', []));
         
-        if ($headerOnly->contains($segment)) {
+        if ($headerSegments->contains($segment)) {
             return $this->resolveHeader();
         }
 
