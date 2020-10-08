@@ -4,6 +4,7 @@ namespace Terranet\Localizer\Resolvers;
 
 use Illuminate\Http\Request;
 use Terranet\Localizer\Contracts\Resolver;
+use Illuminate\Support\Str;
 use function localizer\getDefault;
 use function localizer\locales;
 
@@ -134,7 +135,7 @@ class RequestResolver implements Resolver
         foreach ($locales as $locale) {
             # handle urls that contains language in request uri: /en | /en/profile
             # skip urls that starts with string equals with one of locales: /english
-            if (starts_with($url, "/{$locale}/") || "/{$locale}" === $url) {
+            if (Str::startsWith($url, "/{$locale}/") || "/{$locale}" === $url) {
                 return url(preg_replace(
                     '~^\/' . $locale . '~si',
                     $iso === $default ? "" : "/{$iso}",
