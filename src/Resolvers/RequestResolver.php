@@ -43,7 +43,11 @@ class RequestResolver implements Resolver
             return $this->resolveHeader();
         }
 
-        return $segment ? $segment : $this->resolveHeader();
+        if ($segment) {
+            return $segment;
+        }
+
+        return config('app.fallback_locale') ?? $this->resolveHeader();
     }
 
     /**
