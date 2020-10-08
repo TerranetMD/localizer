@@ -36,11 +36,10 @@ class RequestResolver implements Resolver
      */
     public function resolve()
     {
-        if ($locale = $this->request->segment(config('localizer.request.segment', 1))) {
-            return $locale;
-        }
-
-        return $this->resolveHeader();
+        $locale = $this->request->segment(config('localizer.request.segment', 1));
+        $ignore = collect(config('localizer.request.ignore_segments', []));
+                
+        return $ignore->contains($locale) || !$locale ? $this->resolveHeader() : $locale;
     }
 
     /**
