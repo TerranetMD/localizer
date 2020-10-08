@@ -49,6 +49,8 @@ return [
     'request'  => [
         // segment to read while detecting from request uri
         'segment' => 1,
+        
+        'ignore_segments' => [],
 
         // header to read while detecting from headers
         'header'  => 'HTTP_ACCEPT_LANGUAGE',
