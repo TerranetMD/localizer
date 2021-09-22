@@ -17,7 +17,7 @@ class Resolver extends Manager
 
     public function createRequestDriver()
     {
-        return new RequestResolver($this->app['request']);
+        return new RequestResolver(app('request'));
     }
 
     /**
@@ -25,7 +25,7 @@ class Resolver extends Manager
      */
     public function createDomainDriver()
     {
-        return new DomainResolver($this->app['request']);
+        return new DomainResolver(app('request'));
     }
 
     /**
